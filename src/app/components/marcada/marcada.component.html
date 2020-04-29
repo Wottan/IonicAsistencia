@@ -1,0 +1,44 @@
+<!-- <p>
+  marcada works!
+</p> -->
+<!-- <ion-item>
+  <ion-label>Port</ion-label>
+  <ionic-selectable [(ngModel)]="port" [items]="ports" itemValueField="id" itemTextField="name" [canSearch]="true"
+    (onChange)="portChange($event)">
+  </ionic-selectable>
+</ion-item> -->
+<ion-content>
+  <!--   <ion-fab vertical="center" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="marcar()">
+      Marcar
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content> -->
+
+  <ion-fab vertical="center" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+    <!--     <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <ion-fab-button>
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list> -->
+    <ion-fab-list side="start">
+      <ion-fab-button>
+        <ion-icon name="log-in-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button>
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -5,7 +5,7 @@ import { MarcadaComponent } from './marcada/marcada.component';
 import { ListaMarcadaComponent } from './lista-marcada/lista-marcada.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-// import { IonicSelectableModule } from 'ionic-selectable';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 
 @NgModule({
@@ -15,7 +15,8 @@ import { IonicModule } from '@ionic/angular';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    IonicSelectableModule
   ]
 })
 export class ComponentsModule { }

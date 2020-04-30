@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-// import { IonicSelectableComponent } from 'ionic-selectable';
+import { IonicSelectableComponent } from 'ionic-selectable';
 
 
 class Port {
   public id: number;
   public name: string;
 }
+
 @Component({
   selector: 'app-marcada',
   templateUrl: './marcada.component.html',
@@ -29,11 +30,11 @@ export class MarcadaComponent implements OnInit {
 
   }
 
-  // portChange(event: {
-  //   component: IonicSelectableComponent,
-  //   value: any
-  // }) {
-  //   console.log('port:', event.value);
-  // }
+  portChange(event: {
+    component: IonicSelectableComponent,
+    value: any
+  }) {
+    console.log('port:', event.value);
+  }
 
 }

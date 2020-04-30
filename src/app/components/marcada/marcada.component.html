@@ -1,12 +1,13 @@
 <!-- <p>
   marcada works!
 </p> -->
-<!-- <ion-item>
+<ion-item>
   <ion-label>Port</ion-label>
   <ionic-selectable [(ngModel)]="port" [items]="ports" itemValueField="id" itemTextField="name" [canSearch]="true"
-    (onChange)="portChange($event)">
+    (onChange)="portChange($event)" [canClear]="true" clearButtonText="Limpiar">
+
   </ionic-selectable>
-</ion-item> -->
+</ion-item>
 <ion-content>
   <!--   <ion-fab vertical="center" horizontal="center" slot="fixed">
     <ion-fab-button (click)="marcar()">

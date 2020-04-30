@@ -9,12 +9,12 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Usuario</ion-label>
-      <ion-input formControlName="usuario" type="text"></ion-input>
+      <ion-input formControlName="nombreUsuario" type="text"></ion-input>
     </ion-item>
-    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.usuario.errors?.required">
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nombreUsuario.errors?.required">
       Usuario es obligatorio.
     </span>
-    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.usuario.errors?.minlength">
+    <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nombreUsuario.errors?.minlength">
       Usuario debe tener minimo 2 letras.
     </span>
 
@@ -58,7 +58,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Submit</ion-button>
+        <ion-button type="submit" color="danger" expand="block">LogIn</ion-button>
       </ion-col>
     </ion-row>
   </form>

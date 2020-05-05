@@ -1,7 +1,38 @@
-<p>
-  perfil works!
-</p>
+<ion-content>
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-avatar>
+    <ion-label>
+      <h2>
+        <h3>Nombre </h3>{{usuario.nombre}}
+      </h2>
+    </ion-label>
+  </ion-item>
 
-<ion-button (click)="logout()">Salir</ion-button>
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-icon name="book-outline"></ion-icon>
 
-<ion-button (click)="mostrar()">Token</ion-button>
+    </ion-avatar>
+    <ion-label>
+      <h4>
+        DNI : {{usuario.dni}}
+      </h4>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-avatar slot="start">
+      <ion-icon name="people-circle-outline"></ion-icon>
+    </ion-avatar>
+    <ion-label>
+      <h2>
+        <h3>Rol</h3>{{usuario.rol.descripcion}}
+      </h2>
+    </ion-label>
+  </ion-item>
+  <ion-button expand="block" (click)="logout()">Salir</ion-button>
+
+  <!-- <ion-button (click)="mostrar()">Token</ion-button> -->
+</ion-content>

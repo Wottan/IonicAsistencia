@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpService } from '../http/http.service';
-import { StorageService } from '../storage.service';
 import { Router } from '@angular/router';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'

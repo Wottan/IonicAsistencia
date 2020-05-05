@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../servicios/auth/auth.service';
-import { StorageService } from '../servicios/storage.service';
+import { StorageService } from '../servicios/storage/storage.service';
+
 
 @Component({
   selector: 'app-login',
@@ -51,6 +52,7 @@ export class LoginPage implements OnInit {
     } else {
       this.authService.login(this.ionicForm.value).subscribe(res => {
         console.log(res);
+        //Se almacenan el token y otros datos del usuario en localStorage
         this.storageService.store('userData', res);
         this.router.navigate(['/tabs']);
       });

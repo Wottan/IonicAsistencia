@@ -1,3 +1,18 @@
-<p>
-  lista-marcada works!
-</p>
+<ion-content>
+  <ion-button (click)='cargarMarcadas()'>
+    <ion-icon slot="start" name="refresh-circle-outline"></ion-icon>
+    Actualizar
+  </ion-button>
+  <ion-list inset *ngFor="let marcada of marcadas">
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-icon name="alarm-outline"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{marcada.institucion===null?"Sin Institucion Seleccionada":marcada.institucion.nombre}}</h2>
+        <h3>{{marcada.hora}}</h3>
+        <p>{{marcada.estadoMarcada.estado}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -23,9 +23,9 @@ export class HttpService {
 
   }
 
-  post(serviceName: string, data: any) {
+  post(serviceName: string, data: any, options: Object) {
     const url = environment.apiURL + serviceName;
-    return this.http.post(url, data/* , this.options */);
+    return this.http.post(url, data, options);
   }
 
 

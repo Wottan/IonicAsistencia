@@ -57,7 +57,7 @@ export class MarcadaComponent implements OnInit {
 
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': user.token });
     let options = { headers: headers, withCredintials: false };
-    this.htthService.post('asistencia', this.asistencia).subscribe(asist => {
+    this.htthService.post('asistencia', this.asistencia, options).subscribe(asist => {
       console.log(asist);
       this.storageService.store('asistencia', this.asistencia);
     });
@@ -82,7 +82,7 @@ export class MarcadaComponent implements OnInit {
     console.log('Entrada ' + this.entrada + " marcada " + this.marcada.estadoMarcada);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': user.token });
     let options = { headers: headers, withCredintials: false };
-    this.htthService.post('asistencia', this.asistencia).subscribe(asist => {
+    this.htthService.post('asistencia', this.asistencia, options).subscribe(asist => {
       console.log(asist);
       this.storageService.store('asistencia', this.asistencia);
     });

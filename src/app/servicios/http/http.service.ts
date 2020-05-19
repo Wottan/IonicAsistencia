@@ -16,7 +16,8 @@ export class HttpService {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   // };
   // options = { headers: this.headers, withCredintials: false };
-
+  //apiURL = 'http://localhost:50000/api/';
+  apiURL = "http://192.168.0.6:50000/api/";
   constructor(
     private http: HttpClient
   ) {
@@ -24,14 +25,14 @@ export class HttpService {
   }
 
   post(serviceName: string, data: any, options: Object) {
-    const url = environment.apiURL + serviceName;
+    console.log('post');
+    const url = this.apiURL + serviceName;
     return this.http.post(url, data, options);
   }
 
 
   get(tipoABuscar: string, options: Object): Observable<any[]> {
-    console.log(options);
-    return this.http.get<any[]>(environment.apiURL + tipoABuscar, options)
+    return this.http.get<any[]>(this.apiURL + tipoABuscar, options)
       .pipe(
         tap(Tipo => console.log(tipoABuscar + ' fetched!'))/* ,
         catchError(this.handleError<any[]>('Get student', [])) */

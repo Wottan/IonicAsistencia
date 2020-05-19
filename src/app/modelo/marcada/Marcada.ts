@@ -14,7 +14,7 @@ export class Marcada extends Identidad {
 
     hora: string;
 
-    geolocalizacion: string
+    geolocalizacion: string;
 
     asistencia: Asistencia;
 

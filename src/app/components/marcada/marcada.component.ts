@@ -9,6 +9,7 @@ import { Marcada } from 'src/app/modelo/marcada/Marcada';
 import { DateUtils } from '../../util/DateUtils';
 import { Usuario } from 'src/app/modelo/Usuario';
 import { EstadoMarcada } from 'src/app/modelo/marcada/EstadoMarcada';
+import { GeolocalizacionService } from 'src/app/servicios/geo/geolocalizacion.service';
 
 
 @Component({
@@ -26,21 +27,23 @@ export class MarcadaComponent implements OnInit {
   usuario: Usuario;
   estadoMarcada: EstadoMarcada;
 
-  entrada = true;
+  entrada;
 
-  constructor(private htthService: HttpService,
-    private storageService: StorageService) {
+  constructor(
+    private htthService: HttpService,
+    private storageService: StorageService,
+    private geo: GeolocalizacionService
+  ) {
 
   }
 
   async ngOnInit() {
+    this.entrada = await this.storageService.get('isEntrada') == null ? true : await this.storageService.get('isEntrada');
     this.institucion = null;
     await this.storageService.get('userData').then(user => {
-      console.log(user.token);
       let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': user.token });
       let options = { headers: headers, withCredintials: false };
       this.htthService.get('institucion', options).subscribe(inst => {
-        console.log(inst);
         this.instituciones = inst;
       });
     });
@@ -49,7 +52,6 @@ export class MarcadaComponent implements OnInit {
 
   async marcar() {
     this.entrada = false;
-    console.log(this.institucion);
 
     let user = await this.storageService.get('userData');
 
@@ -58,8 +60,8 @@ export class MarcadaComponent implements OnInit {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': user.token });
     let options = { headers: headers, withCredintials: false };
     this.htthService.post('asistencia', this.asistencia, options).subscribe(asist => {
-      console.log(asist);
-      this.storageService.store('asistencia', this.asistencia);
+      this.storageService.store('isEntrada', false);
+      alert('Entrada con exito');
     });
   }
 
@@ -68,23 +70,18 @@ export class MarcadaComponent implements OnInit {
     value: any
   }) {
     this.institucion = event.value;
-    console.log('institucion:', event.value);
   }
 
 
   async marcarSalida() {
-    console.log('salida');
     this.entrada = true;
     let user = await this.storageService.get('userData');
-
     await this.crearAsistencia(user.idUsuario, 2);
-
-    console.log('Entrada ' + this.entrada + " marcada " + this.marcada.estadoMarcada);
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': user.token });
     let options = { headers: headers, withCredintials: false };
     this.htthService.post('asistencia', this.asistencia, options).subscribe(asist => {
-      console.log(asist);
-      this.storageService.store('asistencia', this.asistencia);
+      this.storageService.store('isEntrada', true);
+      alert('Salida con exito');
     });
   }
 
@@ -94,12 +91,13 @@ export class MarcadaComponent implements OnInit {
   //Crea un EstadoMarcada y lo Asocia a una marcada
   //Se agrega la marcada creada a la coleccion de marcadas de la asistencia
   async crearAsistencia(idUsuario: number, idEstadoMarcada: number): Promise<Asistencia> {
+    let geo = await this.geo.getCurrentPosition();
     let fecha = DateUtils.mixedDateToDateString(new Date());
     let hora = DateUtils.mixedDateToTimeString(new Date());
     this.usuario = new Usuario(idUsuario);
     this.asistencia = new Asistencia(fecha, this.usuario);
     this.estadoMarcada = new EstadoMarcada(idEstadoMarcada);
-    this.marcada = new Marcada(hora, '12321-132', this.estadoMarcada);
+    this.marcada = new Marcada(hora, ' altitude ' + geo.coords.latitude + ' longitude ' + geo.coords.longitude, this.estadoMarcada);
     this.marcada.institucion = this.institucion;
     this.asistencia.marcadas.push(this.marcada);
     return this.asistencia;

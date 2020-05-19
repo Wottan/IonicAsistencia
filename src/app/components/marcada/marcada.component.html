@@ -4,8 +4,9 @@
 <ion-item>
   <ion-label>Instutucion</ion-label>
   <ionic-selectable [(ngModel)]="institucion" [items]="instituciones" itemValueField="id" itemTextField="nombre"
-    [canSearch]="true" (onChange)="portChange($event)" [canClear]="true" clearButtonText="Limpiar"
-    searchPlaceholder="Nombre Institucion" [searchFailText]="'No se encontraron instituciones'">
+    [canSearch]="true" [hasVirtualScroll]="true" (onChange)="portChange($event)" [canClear]="true"
+    clearButtonText="Limpiar" searchPlaceholder="Nombre Institucion"
+    [searchFailText]="'No se encontraron instituciones'">
   </ionic-selectable>
 </ion-item>
 <ion-content>
